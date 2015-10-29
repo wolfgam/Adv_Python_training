@@ -64,4 +64,4 @@ def historical(symbol, date_start, date_end):
     return [StockDataPoint(symbol,
                            dateutil.parser.parse(quote["Date"]),
                            float(quote["Adj_Close"]))
-            for quote in quotes]
+            for quote in quotes]  #for loop in one line
