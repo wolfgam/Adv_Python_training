@@ -1,0 +1,3 @@
+#in command line
+mysql -u root
+create database class;
