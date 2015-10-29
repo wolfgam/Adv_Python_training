@@ -1,0 +1,25 @@
+* Recommended Python application layout
+
+The ~cli~ modules refer to the Cement command-line application framework.
+
+#+BEGIN_SRC
+stocks
+├── requirements.txt
+└── stocks
+    ├── cli
+    │   ├── __init__.py
+    │   └── controllers.py
+    ├── core
+    │   ├── __init__.py
+    │   ├── data_store.py
+    │   ├── exception.py
+    │   ├── stocks.py
+    │   └── yahoo.py
+    ├── main.py
+    └── tests
+        ├── __init__.py
+        ├── fixtures.py
+        ├── mock_data_store.py
+        ├── mock_yahoo.py
+        └── stocks_tests.py
+#+END_SRC
