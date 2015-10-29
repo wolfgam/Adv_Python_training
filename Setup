@@ -1,49 +1,51 @@
-* Setup
+Setup
+Python
 
-** Python
 https://www.python.org/download/releases/2.7/
 
-If you know how to use ~virtualenv~, feel free to create a separate environment for this class.
+If you know how to use virtualenv, feel free to create a separate environment for this class.
+Mac
 
-*** Mac
-On recent versions of Mac OS, simply use the built-in Python 2. Just run ~sudo easy_install pip~ and prefix all future ~pip~ commands with ~sudo~.
+On recent versions of Mac OS, simply use the built-in Python 2. Just run sudo easy_install pip and prefix all future pip commands with sudo.
+Windows
 
-*** Windows
-- 32-bit: https://www.python.org/ftp/python/2.7/python-2.7.msi
-- 64-bit: https://www.python.org/ftp/python/2.7/python-2.7.amd64.msi
+    32-bit: https://www.python.org/ftp/python/2.7/python-2.7.msi
+    64-bit: https://www.python.org/ftp/python/2.7/python-2.7.amd64.msi
 
 Please use PowerShell to do your work in this class.
 
 Be sure to set up your system PATH:
 
-#+BEGIN_SRC
 [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python27;C:\Python27\Scripts", "User")
-#+END_SRC
 
 In order to install NumPy, you need to install the Microsoft Visual C++ compiler for Python 2.7: http://www.microsoft.com/en-us/download/confirmation.aspx?id=44266
+MySQL
 
-** MySQL
 https://dev.mysql.com/downloads/mysql/
+Mac
 
-*** Mac
-- https://dev.mysql.com/downloads/file/?id=459872
+    https://dev.mysql.com/downloads/file/?id=459872
 
-*** Windows
-- https://dev.mysql.com/downloads/file/?id=459896
-To install an MSI, right-click it and select "Install".
+Windows
 
-** Atom (text editor)
+    https://dev.mysql.com/downloads/file/?id=459896
+
+To install an MSI, right-click it and select “Install”.
+Atom (text editor)
+
 https://atom.io
+Mac
 
-*** Mac
-- https://github.com/atom/atom/releases/download/v1.0.19/atom-mac.zip
+    https://github.com/atom/atom/releases/download/v1.0.19/atom-mac.zip
 
-*** Windows
-- https://github.com/atom/atom/releases/download/v1.0.19/AtomSetup.exe
-- https://github.com/atom/atom/releases/download/v1.0.19/atom-windows.zip
+Windows
 
-*** Optional alternative text editor for Mac OS: TextWrangler
+    https://github.com/atom/atom/releases/download/v1.0.19/AtomSetup.exe
+    https://github.com/atom/atom/releases/download/v1.0.19/atom-windows.zip
+
+Optional alternative text editor for Mac OS: TextWrangler
+
 http://www.barebones.com/products/textwrangler/
+Optional alternative text editor: Notepad++
 
-*** Optional alternative text editor: Notepad++
 http://notepad-plus-plus.org/
