@@ -2,6 +2,9 @@ import dateutil.parser
 import json
 import os
 
+import matplotlib.pyplot as plt
+import mysql.connector
+import numpy as np
 import requests
 
 
@@ -64,4 +67,65 @@ def historical(symbol, date_start, date_end):
     return [StockDataPoint(symbol,
                            dateutil.parser.parse(quote["Date"]),
                            float(quote["Adj_Close"]))
-            for quote in quotes]  #for loop in one line
+            for quote in quotes]
+
+
+class DataStoreReal():
+
+    db_cxn = None
+
+    def __init__(self):
+        if not DataStoreReal.db_cxn:
+            DataStoreReal.db_cxn = mysql.connector.connect(
+                host="localhost", user="root", database="class")
+
+    # schema:
+    # create table prices (symbol text, timestamp datetime, price float)
+    # create unique index prices_symbol_timestamp on prices (symbol (6), timestamp)
+
+    def save(self, stock_data_points):
+        cursor = DataStoreReal.db_cxn.cursor()
+        for sdp in stock_data_points:
+            cursor.execute('''insert into prices (symbol, timestamp, price) values (%s, %s, %s) on duplicate key update price=values(price)''',
+                           (sdp.symbol, sdp.timestamp, sdp.price))
+        DataStoreReal.db_cxn.commit()
+
+    def load(self, symbol, date_start, date_end):
+        cursor = DataStoreReal.db_cxn.cursor()
+        cursor.execute('''select timestamp, price from prices where symbol = %s and timestamp >= %s and timestamp < %s''',
+                       (symbol, date_start, date_end))
+        return [StockDataPoint(symbol, timestamp, price) for (timestamp, price) in cursor]
+
+
+def store():
+    if "ENV" in os.environ and os.environ["ENV"] == "test":
+        return DataStoreMock()
+    else:
+        return DataStoreReal()
+
+
+def save(stock_data_points):
+    store().save(stock_data_points)
+
+
+def load(symbol, date_start, date_end):
+    return store().load(symbol, date_start, date_end)
+
+
+def plot_symbol(symbol, date_start, date_end):
+    quotes = load(symbol, date_start, date_end)
+    xs = np.array([quote.timestamp for quote in quotes])
+    ys = np.array([quote.price for quote in quotes])
+    plt.plot(xs, ys)
+    plt.show()
+
+
+def moving_average(a, n=3):
+    ret = np.cumsum(a, dtype=float)
+    ret[n:] = ret[n:] - ret[:-n]
+    return ret[n - 1:] / n
+
+
+def plot_symbol_with_moving_avg(symbol, date_start, date_end):
+    # Implement this.
+    pass
