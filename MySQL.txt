@@ -2,6 +2,10 @@
 mysql -u root
 # in mysql command line
 create database class;
+show databases;
+use class;
+create table prices (symbol text, timestamp datetime, price float);
+create unique index prices_symbol_timestamp on prices (symbol (6), timestamp);
 
 # in cmd
 pip install numpy
@@ -9,4 +13,22 @@ pip install matplotlib
 pip install --allow-external mysql-conneector-python mysql-conneector-python 
 import mysql.connector
 cnx = mysql.connector.connect(host="localhost",user="root", password="root123", database="class")
-fjdas
+
+# creates a transaction:
+cursor = cnx.cursor()
+
+# run SQL:
+cursor.execute(query, parameter_tuple)
+
+# 1. To change data, don't do very much with the cursor, but do remember to commit:
+cnx.commit()
+
+# 2. To retrieve data, you read it using the cursor object.
+# For example:
+[{"name": name, "email": email} for (name, email) in cursor]
+
+# Done querying? Reset the cursor:
+cursor.reset()
+
+# Done with the cursor? Close it:
+cursor.close()
