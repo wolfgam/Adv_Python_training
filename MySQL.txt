@@ -9,4 +9,4 @@ pip install matplotlib
 pip install --allow-external mysql-conneector-python mysql-conneector-python 
 import mysql.connector
 cnx = mysql.connector.connect(host="localhost",user="root", password="root123", database="class")
-
+fjdas
