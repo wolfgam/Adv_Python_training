@@ -1,0 +1,7 @@
+# Using virtualenv
+
+- If you already have pip or use Windows: ~pip install virtualenv~.
+- Use ~virtualenv <envpath>~ to create an environment.
+- Go to ~<envpath>~ and use the ~bin/activate~ and ~bin/deactivate~ scripts in the environment. To use ~activate~, you need to use source: ~source bin/activate~.
+- Read http://virtualenv.readthedocs.org/en/latest/userguide.html
+- To use virtualenv in a completely isolated manner, use my scripts: http://bit.ly/cv-python-virtualenv-scripts (use: ~pve2~ or ~pve3 myenv~; then ~pve~ without an argument disables the virtual environment).
