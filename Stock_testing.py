@@ -127,5 +127,10 @@ def moving_average(a, n=3):
 
 
 def plot_symbol_with_moving_avg(symbol, date_start, date_end):
-    # Implement this.
-    pass
+    quotes = load(symbol, date_start, date_end)
+    xs = np.array([quote.timestamp for quote in quotes])
+    ys = np.array([quote.price for quote in quotes])
+    zs = moving_average(ys, 20) # 20-day moving average
+    ws = moving_average(ys, 40) # 40-day moving average
+    plt.plot(xs, ys, "", xs[19:], zs, "", xs[39:], ws, "")
+    plt.show()
